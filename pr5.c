@@ -35,7 +35,7 @@ int main(int argc, char ** argv)
 	int i, j;
 	for(i = 0; i < 4096; i++)
 	{
-		for(j = 0; j < 4096; j++)
+		for(j = 0; j < 20480; j++)
 		{
 			array[i][j] = 0;
 		}
@@ -60,18 +60,19 @@ void readRows()
 	int i, j;
 	for(i = 0; i < 4096; i++)
 	{
-		for(j = 0; j < 4096; j++)
+		for(j = 0; j < 20480; j++)
 		{
-			printf("%d ", array[i][j]);
+			//printf("%d ", array[i][j]);
+			array[i][j];
 		}
-		printf("\n");
+		//printf("\n");
 	}
 }
 
 void readColumns()
 {
 	int i, j;
-	for(j = 0; j < 4096; j++)
+	for(j = 0; j < 20480; j++)
 	{
 		for(i = 0; i < 4096; i++)
 		{
@@ -85,7 +86,7 @@ void writeRows()
 	int i, j;
 	for(i = 0; i < 4096; i++)
 		{
-			for(j = 0; j < 4096; j++)
+			for(j = 0; j < 20480; j++)
 			{
 				array[i][j] = 4;
 			}
@@ -96,7 +97,7 @@ void writeRows()
 void writeColumns()
 {
 	int i, j;
-	for(j = 0; j < 4096; j++)
+	for(j = 0; j < 20480; j++)
 	{
 		for(i = 0; i < 4096; i++)
 		{
@@ -136,7 +137,7 @@ void endTime(struct timespec start)
       exit( EXIT_FAILURE );
   }
   runTime = diff(start, end);
-  fprintf(stderr, "\n%lld seconds %lld nanoseconds\n", (long long)runTime.tv_sec, (long long)runTime.tv_nsec);
+  fprintf(stderr, "\n%lld seconds %lld nanoseconds\n", ((long long)runTime.tv_sec)/10, ((long long)runTime.tv_nsec)/10);
 }
 
 /*
@@ -152,11 +153,15 @@ void startTime()
 		perror( "clock gettime" );
 		exit( EXIT_FAILURE );
     }
+    int i;
 
-    readRows();
-    readColumns();
-    writeRows();
-    writeColumns();
+    for(i = 0; i < 10; i++)
+    {
+    	readRows();
+    	readColumns();
+    	writeRows();
+    	writeColumns();
+    }
 
 	endTime(start);
 }
