@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <math.h>
 
-char array[4096][4096];
+char array[4096][20480];
 
 void readRows();
 
